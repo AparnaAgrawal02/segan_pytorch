@@ -29,7 +29,7 @@ def main(opts):
     assert opts.cfg_file is not None
     assert opts.test_files is not None
     assert opts.g_pretrained_ckpt is not None
-
+    #print(opts.test_files)
     with open(opts.cfg_file, 'r') as cfg_f:
         args = ArgParser(json.load(cfg_f))
         print('Loaded train config: ')
@@ -51,6 +51,7 @@ def main(opts):
         if len(opts.test_files) == 1:
             # assume we read directory
             twavs = glob.glob(os.path.join(opts.test_files[0], '*.wav'))
+            print('Found {} wavs in {}'.format(len(twavs), opts.test_files[0]))
         else:
             # assume we have list of files in input
             twavs = opts.test_files
